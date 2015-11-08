@@ -47,6 +47,43 @@ namespace WpfRubyLabel
     /// </summary>
     public class WpfRubyLabelControl : Control, INotifyPropertyChanged
     {
+        public int TextSize
+        {
+            get { return _TextSize; }
+            set
+            {
+                _TextSize = value;
+                NotifyPropertyChanged("TextSize");
+            }
+        }
+        public string TextColor
+        {
+            get { return _TextColor; }
+            set
+            {
+                _TextColor = value;
+                NotifyPropertyChanged("TextColor");
+            }
+        }
+        public int RubySize
+        {
+            get { return _RubySize; }
+            set
+            {
+                _RubySize = value;
+                NotifyPropertyChanged("TextSize");
+            }
+        }
+        public string RubyColor
+        {
+            get { return _RubyColor; }
+            set
+            {
+                _RubyColor = value;
+                NotifyPropertyChanged("RubyColor");
+            }
+        }
+        public string HtmlBody { get; set; }
 
         public string WholeHtml
         {
@@ -57,6 +94,11 @@ namespace WpfRubyLabel
                 NotifyPropertyChanged("WholeHtml");
             }
         }
+
+        private int _TextSize;
+        private string _TextColor;
+        private int _RubySize;
+        private string _RubyColor;
         private string _WholeHtml;
 
         public string Text
@@ -91,12 +133,44 @@ namespace WpfRubyLabel
 
         public WpfRubyLabelControl()
         {
+            TextSize = 14;
+            TextColor = "#000000";
+            RubySize = 10;
+            RubyColor = "#ff0000";
+
             Loaded += WpfRubyLabelControl_Loaded;
         }
 
         private void WpfRubyLabelControl_Loaded(object sender, RoutedEventArgs e)
         {
             (GetTemplateChild("RubyBrowser") as WebBrowser).DataContext = this;
+        }
+
+        private void Navigate()
+        {
+            var sb = new StringBuilder();
+            sb.AppendLine(@"<html lang=""ja"">")
+              .AppendLine(@"<head>")
+              .AppendLine(@"    <meta http-equiv = ""Content-Type"" content = ""text/html; charset=utf-8"">")
+              .AppendLine(@"    <style type=""text/css"">")
+              .AppendLine(@"    <!--")
+              .AppendLine(@"        body {")
+              .AppendLine(@"            overflow: hidden;")
+              .AppendFormat(@"            font-size: {0}px;", TextSize).AppendLine()
+              .AppendFormat(@"            color: {0};", TextColor).AppendLine()
+              .AppendLine(@"        }")
+              .AppendLine(@"        rt {")
+              .AppendFormat(@"            font-size: {0}px;", RubySize).AppendLine()
+              .AppendFormat(@"            color: {0};", RubyColor).AppendLine()
+              .AppendLine(@"        }")
+              .AppendLine(@"    -->")
+              .AppendLine(@"    </style>")
+              .AppendLine(@"</head>")
+              .AppendLine(@"<body>")
+              .AppendLine(HtmlBody)
+              .AppendLine(@"</body>")
+              .AppendLine(@"</html>");
+            WholeHtml = sb.ToString();
         }
 
         public void SetText()
@@ -129,11 +203,15 @@ namespace WpfRubyLabel
                 new FrameworkPropertyMetadata(OnHtmlChanged));
 
         public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(String info)
+        private void NotifyPropertyChanged(String name)
         {
             if (PropertyChanged != null)
             {
-                PropertyChanged(this, new PropertyChangedEventArgs(info));
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+                if (name != "WholeHtml")
+                {
+                    Navigate();
+                }
             }
         }
 

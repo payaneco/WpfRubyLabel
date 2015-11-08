@@ -7,7 +7,35 @@
         xmlns:label="clr-namespace:WpfRubyLabel;assembly=WpfRubyLabel"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
+    <Window.Resources>
+        <local:SizeConverter x:Key="SizeConv"/>
+    </Window.Resources>
     <Grid>
-        <label:WpfRubyLabelControl x:Name="LblSample"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <label:WpfRubyLabelControl x:Name="LblTest"/>
+        <TextBox Grid.Row="1" Name="EdtTest" TextWrapping="Wrap"/>
+        <StackPanel Grid.Row="2" Name="PnlProperty" Orientation="Horizontal">
+            <TextBlock Text="Font" Margin="4"/>
+            <TextBlock Text="Size :" Margin="4"/>
+            <TextBox Width="50" Text="{Binding TextSize, Converter={StaticResource SizeConv}, Mode=TwoWay}"/>
+            <TextBlock Text="Color :" Margin="4"/>
+            <TextBox Width="100" Text="{Binding TextColor, Mode=TwoWay}"/>
+            <TextBlock Text="Ruby" Margin="4"/>
+            <TextBlock Text="Size :" Margin="4"/>
+            <TextBox Width="50" Text="{Binding RubySize, Mode=TwoWay}"/>
+            <TextBlock Text="Color :" Margin="4"/>
+            <TextBox Width="100" Text="{Binding RubyColor, Mode=TwoWay}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="3" Orientation="Horizontal">
+            <RadioButton Content="html" IsChecked="True"/>
+            <RadioButton Content="aozora"/>
+            <Button Name="BtnTest" Content="Show ruby."/>
+            <Button Name="BtnConvertBack" Content="Get text."/>
+        </StackPanel>
     </Grid>
 </Window>
