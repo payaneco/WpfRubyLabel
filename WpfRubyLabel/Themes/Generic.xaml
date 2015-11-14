@@ -8,7 +8,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type local:WpfRubyLabelControl}">
-                    <WebBrowser Name="RubyBrowser" local:WpfRubyLabelControl.Html="{Binding WholeHtml, Mode=TwoWay}"/>
+                    <WebBrowser Name="RubyBrowser" local:WpfRubyLabelControl.Html="{Binding WholeHtml}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

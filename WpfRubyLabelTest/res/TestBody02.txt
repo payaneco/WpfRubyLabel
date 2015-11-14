@@ -1,0 +1,19 @@
+﻿<html lang="ja">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8">
+    <style type="text/css">
+    <!--
+        body {{
+            overflow: hidden;
+            font-size: 14px;
+            color: #000000;
+        }}
+        rt {{
+            font-size: 10px;
+            color: #000000;
+        }}
+    -->
+    </style>
+</head>
+    <body>これは<ruby>螺鈿<rt>らでん</rt></ruby>の<ruby>装飾<rt>そうしょく</rt></ruby>です。</body>
+</html>

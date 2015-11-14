@@ -22,7 +22,6 @@ namespace WpfRubyLabelSample
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-
         public int TextSize
         {
             get { return _TextSize; }
@@ -89,7 +88,26 @@ namespace WpfRubyLabelSample
             InitializeComponent();
 
             Loaded += MainWindow_Loaded;
-            BtnTest.Click += BtnTest_Click;
+            EdtTest.TextChanged += EdtTest_TextChanged;
+            RdoAozora.Click += RdoAozora_Click;
+            RdoHtml.Click += RdoHtml_Click;
+        }
+
+        private void RdoAozora_Click(object sender, RoutedEventArgs e)
+        {
+            LblTest.RubyNotation = WpfRubyLabel.WpfRubyLabelControl.RubyNotationType.Aozora;
+            EdtTest.Text = LblTest.Text;
+        }
+
+        private void RdoHtml_Click(object sender, RoutedEventArgs e)
+        {
+            LblTest.RubyNotation = WpfRubyLabel.WpfRubyLabelControl.RubyNotationType.Html;
+            EdtTest.Text = LblTest.Text;
+        }
+
+        private void EdtTest_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            LblTest.Text = EdtTest.Text;
         }
 
         private void BtnTest_Click(object sender, RoutedEventArgs e)
@@ -99,13 +117,13 @@ namespace WpfRubyLabelSample
 
         private void MainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            EdtTest.Text = "<ruby>螺鈿<rt>らでん</rt></ruby>の<ruby>装飾<rt>そうしょく</rt></ruby>";
             TextSize = LblTest.TextSize;
             TextColor = LblTest.TextColor;
             RubySize = LblTest.RubySize;
             RubyColor = LblTest.RubyColor;
 
             PnlProperty.DataContext = this;
+            EdtTest.Text = "螺鈿《らでん》の装飾《そうしょく》";
         }
     }
 

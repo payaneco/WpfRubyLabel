@@ -18,7 +18,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         <label:WpfRubyLabelControl x:Name="LblTest"/>
-        <TextBox Grid.Row="1" Name="EdtTest" TextWrapping="Wrap"/>
+        <TextBox Grid.Row="1" Name="EdtTest" TextWrapping="Wrap" AcceptsReturn="True"/>
         <StackPanel Grid.Row="2" Name="PnlProperty" Orientation="Horizontal">
             <TextBlock Text="Font" Margin="4"/>
             <TextBlock Text="Size :" Margin="4"/>
@@ -27,15 +27,13 @@
             <TextBox Width="100" Text="{Binding TextColor, Mode=TwoWay}"/>
             <TextBlock Text="Ruby" Margin="4"/>
             <TextBlock Text="Size :" Margin="4"/>
-            <TextBox Width="50" Text="{Binding RubySize, Mode=TwoWay}"/>
+            <TextBox Width="50" Text="{Binding RubySize, Converter={StaticResource SizeConv}, Mode=TwoWay}"/>
             <TextBlock Text="Color :" Margin="4"/>
             <TextBox Width="100" Text="{Binding RubyColor, Mode=TwoWay}"/>
         </StackPanel>
         <StackPanel Grid.Row="3" Orientation="Horizontal">
-            <RadioButton Content="html" IsChecked="True"/>
-            <RadioButton Content="aozora"/>
-            <Button Name="BtnTest" Content="Show ruby."/>
-            <Button Name="BtnConvertBack" Content="Get text."/>
+            <RadioButton Name="RdoAozora" Content="aozora" IsChecked="True"/>
+            <RadioButton Name="RdoHtml" Content="html"/>
         </StackPanel>
     </Grid>
 </Window>

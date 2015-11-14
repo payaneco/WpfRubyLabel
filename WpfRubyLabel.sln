@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfRubyLabel", "WpfRubyLabe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfRubyLabelSample", "WpfRubyLabelSample\WpfRubyLabelSample.csproj", "{E2F5D099-4658-4410-8720-E7389CFFA2A2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfRubyLabelTest", "WpfRubyLabelTest\WpfRubyLabelTest.csproj", "{C334C3D6-4ADA-4510-9FAE-00216F2816F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{E2F5D099-4658-4410-8720-E7389CFFA2A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2F5D099-4658-4410-8720-E7389CFFA2A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F5D099-4658-4410-8720-E7389CFFA2A2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C334C3D6-4ADA-4510-9FAE-00216F2816F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C334C3D6-4ADA-4510-9FAE-00216F2816F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C334C3D6-4ADA-4510-9FAE-00216F2816F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C334C3D6-4ADA-4510-9FAE-00216F2816F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

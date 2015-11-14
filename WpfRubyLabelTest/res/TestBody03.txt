@@ -1,0 +1,17 @@
+﻿<html lang="ja">
+<head>
+    <meta http-equiv = "Content-Type" content = "text/html; charset=utf-8">
+    <style type="text/css">
+    <!--
+        body {
+            overflow: hidden;
+        }
+        rt {
+            font-size: 9px;
+            color: #ff0000;
+        }
+    -->
+    </style>
+</head>
+<body></body>
+</html>
