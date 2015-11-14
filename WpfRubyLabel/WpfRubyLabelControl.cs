@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -46,7 +47,7 @@ namespace WpfRubyLabel
     ///     <MyNamespace:WpfRubyLabelControl/>
     ///
     /// </summary>
-    public class WpfRubyLabelControl : Control, INotifyPropertyChanged
+    public class WpfRubyLabelControl : Control, INotifyPropertyChanged, IValueConverter
     {
         /// <summary>
         /// ルビ記法の列挙型
@@ -175,14 +176,14 @@ namespace WpfRubyLabel
                     //todo 実装
                     //case RubyNotationType.Shincho: text = GetShinchoText(HtmlBody); break;
                     case RubyNotationType.Html:
-                    default: text = HtmlBody; break;
+                    default: text = value; break;
                 }
                 HtmlBody = text;
             }
         }
 
         /// <summary>
-        /// 
+        /// 青空文庫風の書式をHtmlに変換する
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
@@ -349,6 +350,40 @@ namespace WpfRubyLabel
         private string GetColorString(Color color)
         {
             return string.Format("#{0:x2}{1:x2}{2:x2}", color.R, color.G, color.B);
+        }
+
+        /// <summary>
+        /// 末尾に文字列を追加する
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        public WpfRubyLabelControl Append(string text)
+        {
+            _BodyBuilder.Append(text);
+            return this;
+        }
+
+        /// <summary>
+        /// 末尾に文字列とルビを追加する
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="ruby"></param>
+        /// <returns></returns>
+        public WpfRubyLabelControl Append(string text, string ruby)
+        {
+            _BodyBuilder.AppendFormat("<ruby>{0}<rt>{1}</rt></ruby>", text, ruby);
+            return this;
+        }
+
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            Text = value.ToString();
+            return WholeHtml;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return Text;
         }
     }
 }

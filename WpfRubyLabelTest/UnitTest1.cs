@@ -20,9 +20,6 @@ namespace WpfRubyLabelTest
             Assert.AreEqual("これは<ruby>螺鈿<rt>らでん</rt></ruby>の<ruby>装飾<rt>そうしょく</rt></ruby>です。", label.HtmlBody);
             Assert.AreEqual(GetTextResource("TestBody02.txt"), label.WholeHtml);
 
-            //label.Append("");
-            //label.Append("", "");
-            //label.Append("").Append("", "").Append("");
         }
 
         private string GetTextResource(string name)
@@ -33,6 +30,18 @@ namespace WpfRubyLabelTest
             {
                 return reader.ReadToEnd();
             }
+        }
+
+        [TestMethod]
+        public void TestAppend()
+        {
+            var label = new WpfRubyLabelControl();
+            label.Append("ああ");
+            Assert.AreEqual("ああ", label.HtmlBody);
+            label.Append("幸せ", "ハッピー");
+            Assert.AreEqual("ああ<ruby>幸せ<rt>ハッピー</rt></ruby>", label.HtmlBody);
+            label.Append("。なんて").Append("家庭の味", "ボルシチ").Append("なのだろう！");
+            Assert.AreEqual("ああ｜幸せ《ハッピー》。なんて｜家庭の味《ボルシチ》なのだろう！", label.Text);
         }
 
         [TestMethod]
@@ -68,9 +77,9 @@ namespace WpfRubyLabelTest
 ぼく《僕》とR2D3《メカ》、猫《タマ》の３人《にん》
 で、|CR銀河Train777《パチンコ》をトゥギャザー《ルー》しました。《まる》
 《劇終》";
-            Assert.AreEqual(@"　<ruby>今日<rt>きょう</rt></ruby>
-<ruby>ぼく<rt>僕</rt></ruby>と<ruby>R2D3<rt>メカ</rt></ruby>、<ruby>猫<rt>タマ</rt></ruby>の３<ruby>人<rt>にん</rt></ruby>
-で、<ruby>CR銀河Train777<rt>パチンコ</rt></ruby>を<ruby>トゥギャザー<rt>ルー</rt></ruby>しました。《まる》
+            Assert.AreEqual(@"　<ruby>今日<rt>きょう</rt></ruby><br/>
+<ruby>ぼく<rt>僕</rt></ruby>と<ruby>R2D3<rt>メカ</rt></ruby>、<ruby>猫<rt>タマ</rt></ruby>の３<ruby>人<rt>にん</rt></ruby><br/>
+で、<ruby>CR銀河Train777<rt>パチンコ</rt></ruby>を<ruby>トゥギャザー<rt>ルー</rt></ruby>しました。《まる》<br/>
 《劇終》", label.HtmlBody);
             Assert.AreEqual(@"　｜今日《きょう》
 ｜ぼく《僕》と｜R2D3《メカ》、｜猫《タマ》の３｜人《にん》
